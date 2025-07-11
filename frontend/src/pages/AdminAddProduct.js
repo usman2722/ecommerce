@@ -46,6 +46,7 @@ const AdminAddProduct = () => {
     setLoading(false);
   };
 
+  // Use adminInfo token for admin actions
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -54,10 +55,18 @@ const AdminAddProduct = () => {
     setUploading(true);
     setMessage('');
     try {
-      // Use the new product image upload endpoint
-      const { data } = await axios.post('http://localhost:5000/api/products/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${JSON.parse(localStorage.getItem('userInfo')).token}` },
-      });
+      // Use environment variable for API URL and adminInfo token
+      const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/products/upload`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${adminInfo?.token}`,
+          },
+        }
+      );
       setForm((prev) => ({ ...prev, image: data.image }));
       setMessage('Image uploaded!');
     } catch (err) {
@@ -97,7 +106,8 @@ const AdminAddProduct = () => {
                 />
                 {uploading && <span className="text-blue-600 font-semibold">Uploading...</span>}
                 {form.image && (
-                  <img src={`http://localhost:5000${form.image}`} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100" />
+                  // Use environment variable for backend URL in image preview
+                  <img src={`${process.env.REACT_APP_API_URL.replace('/api', '')}${form.image}`} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100" />
                 )}
               </div>
               <input type="hidden" name="image" value={form.image} />
