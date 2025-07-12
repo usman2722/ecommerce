@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import AdminLayout from '../components/AdminLayout';
 import API from '../services/api';
+import { getImageUrl } from '../utils/imageUtils';
 
 const API_URL = '/admin/banners';
 
@@ -158,7 +159,7 @@ export default function AdminBanners() {
                   {banners.map((banner) => (
                     <TableRow key={banner._id}>
                       <TableCell>
-                        <img src={`http://localhost:5000${banner.image}`} alt={banner.title} style={{ width: 120, height: 60, objectFit: 'cover', borderRadius: 8, boxShadow: '0 2px 8px #0001' }} />
+                        <img src={getImageUrl(banner.image)} alt={banner.title} style={{ width: 120, height: 60, objectFit: 'cover', borderRadius: 8, boxShadow: '0 2px 8px #0001' }} />
                       </TableCell>
                       <TableCell>{banner.title || '-'}</TableCell>
                       <TableCell>

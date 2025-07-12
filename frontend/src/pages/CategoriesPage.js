@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { fetchProducts } from '../services/api';
+import { getImageUrl } from '../utils/imageUtils';
 
 const categories = [
   {
@@ -78,7 +79,7 @@ const CategoriesPage = ({ onCartChange }) => {
                   <div className="flex gap-4 mb-2">
                     {catProducts.slice(0, 3).map((prod) => (
                       <div key={prod._id} className="flex flex-col items-center bg-blue-50 rounded-lg p-2 w-28">
-                        <img src={prod.image && prod.image.startsWith('/uploads') ? `http://localhost:5000${prod.image}` : prod.image} alt={prod.name} className="h-16 w-16 object-cover rounded mb-1" />
+                        <img src={getImageUrl(prod.image)} alt={prod.name} className="h-16 w-16 object-cover rounded mb-1" />
                         <div className="text-xs font-semibold text-gray-700 text-center line-clamp-2 min-h-[32px]">{prod.name}</div>
                         <div className="text-xs text-blue-600 font-bold">Rs {prod.price}</div>
                       </div>

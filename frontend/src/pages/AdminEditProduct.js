@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AdminLayout from '../components/AdminLayout';
 import { fetchProduct, updateProduct } from '../services/api';
+import { getImageUrl } from '../utils/imageUtils';
 
 const AdminEditProduct = () => {
   const { id } = useParams();
@@ -76,7 +77,7 @@ const AdminEditProduct = () => {
                 <label className="block font-semibold mb-1 text-blue-800">Image URL</label>
                 <input type="text" name="image" value={form.image} onChange={handleChange} className="w-full rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm" required />
                 {form.image && (
-                  <img src={form.image.startsWith('/uploads') ? `http://localhost:5000${form.image}` : form.image} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100 mt-3" />
+                  <img src={getImageUrl(form.image)} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100 mt-3" />
                 )}
               </div>
               <div>

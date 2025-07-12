@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUtils';
 
 const ProductCard = ({ product, onAddToCart }) => {
     const handleAddToCart = (e) => {
@@ -11,7 +12,7 @@ const ProductCard = ({ product, onAddToCart }) => {
         <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-200 border border-transparent hover:scale-105 hover:shadow-2xl hover:border-purple-400">
             <div className="relative">
                 <Link to={`/product/${product._id}`}>
-                    <img src={product.image && product.image.startsWith('/uploads') ? `http://localhost:5000${product.image}` : product.image} alt={product.name} className="w-full h-64 object-cover" />
+                    <img src={getImageUrl(product.image)} alt={product.name} className="w-full h-64 object-cover" />
                 </Link>
                 {product.category && (
                     <span className="absolute top-2 left-2 bg-blue-700 bg-opacity-80 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchProduct } from '../services/api';
+import { getImageUrl } from '../utils/imageUtils';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -53,7 +54,7 @@ const ProductPage = () => {
             <div className="grid md:grid-cols-2 gap-8">
                 <div>
                     <img
-                        src={product.image && (product.image.startsWith('http') ? product.image : `http://localhost:5000${product.image}`)}
+                        src={getImageUrl(product.image)}
                         alt={product.name}
                         className="mx-auto mt-8 rounded-2xl shadow-xl object-contain"
                         style={{ maxWidth: '350px', maxHeight: '350px', width: '100%', height: 'auto' }}

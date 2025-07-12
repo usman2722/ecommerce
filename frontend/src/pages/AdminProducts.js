@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchProducts, deleteProduct } from '../services/api';
 import AdminLayout from '../components/AdminLayout';
+import { getImageUrl } from '../utils/imageUtils';
 
 const AdminProducts = () => {
     const [products, setProducts] = useState([]);
@@ -57,7 +58,7 @@ const AdminProducts = () => {
                             {products.slice().reverse().map((product) => (
                                 <tr key={product._id} className="border-b hover:bg-blue-50 transition">
                                     <td className="px-2 md:px-4 py-2 md:py-3 text-center">
-                                        <img src={product.image && product.image.startsWith('/uploads') ? `http://localhost:5000${product.image}` : product.image} alt={product.name} className="h-10 w-10 md:h-14 md:w-14 object-cover rounded-xl shadow border-2 border-blue-100 mx-auto" />
+                                        <img src={getImageUrl(product.image)} alt={product.name} className="h-10 w-10 md:h-14 md:w-14 object-cover rounded-xl shadow border-2 border-blue-100 mx-auto" />
                                     </td>
                                     <td className="px-2 md:px-4 py-2 md:py-3 font-semibold text-blue-700">{product.name}</td>
                                     <td className="px-2 md:px-4 py-2 md:py-3 font-bold text-purple-700">Rs {Math.round(product.price)}</td>

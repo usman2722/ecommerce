@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes.js');
 const productRoutes = require('./routes/productRoutes.js');
 const orderRoutes = require('./routes/orderRoutes.js');
 const adminRoutes = require('./routes/adminRoutes.js');
+const bannerRoutes = require('./routes/bannerRoutes.js');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware.js');
 const path = require('path');
 
@@ -30,6 +31,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/banners', bannerRoutes);
 
 // Error Handling Middleware
 app.use(notFound);

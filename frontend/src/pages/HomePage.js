@@ -56,16 +56,18 @@ const HomePage = ({ onCartChange }) => {
         const getProducts = async () => {
             try {
                 const { data } = await fetchProducts();
-                setProducts(data);
+                setProducts(Array.isArray(data) ? data : []);
             } catch (error) {
-                console.error(error);
+                console.error('Error fetching products:', error);
+                setProducts([]);
             }
         };
         const getBanners = async () => {
             try {
-                const { data } = await API.get('/admin/banners');
-                setBanners(data);
+                const { data } = await API.get('/banners'); // Access banners through dedicated banner route
+                setBanners(Array.isArray(data) ? data : []);
             } catch (error) {
+                console.error('Error fetching banners:', error);
                 setBanners([]);
             }
         };
@@ -81,21 +83,30 @@ const HomePage = ({ onCartChange }) => {
       return () => clearInterval(interval);
     }, [banners]);
 
+    // Helper function to get the correct image URL
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) return '';
+        if (imagePath.startsWith('http')) return imagePath;
+        // Use environment variable for API URL or fallback to relative path
+        const baseUrl = process.env.REACT_APP_API_URL || '';
+        return `${baseUrl}${imagePath}`;
+    };
+
     return (
         <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 via-pink-100 to-purple-200 pb-12">
           {/* Slider */}
           <div className="relative w-full h-64 md:h-96 overflow-hidden mb-12 rounded-b-3xl shadow-2xl bg-white bg-opacity-60 backdrop-blur-lg">
-            {banners.map((banner, idx) => (
+            {Array.isArray(banners) && banners.map((banner, idx) => (
               <img
-                key={banner._id}
-                src={`http://localhost:5000${banner.image}`}
+                key={banner._id || idx}
+                src={getImageUrl(banner.image)}
                 alt={banner.title || 'Shop banner'}
                 className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${slider === idx ? 'opacity-100' : 'opacity-0'}`}
                 style={{ zIndex: slider === idx ? 1 : 0 }}
               />
             ))}
             {/* Arrows */}
-            {banners.length > 1 && (
+            {Array.isArray(banners) && banners.length > 1 && (
               <>
                 <button
                   className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2 shadow text-3xl flex items-center justify-center"
@@ -117,7 +128,7 @@ const HomePage = ({ onCartChange }) => {
             )}
             {/* Dots */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {banners.map((_, idx) => (
+              {Array.isArray(banners) && banners.map((_, idx) => (
                 <span key={idx} className={`w-3 h-3 rounded-full ${slider === idx ? 'bg-blue-600' : 'bg-white bg-opacity-60'} border border-blue-600`}></span>
               ))}
             </div>
@@ -127,10 +138,10 @@ const HomePage = ({ onCartChange }) => {
           <div className="container mx-auto mb-16">
             <h2 className="text-3xl font-extrabold mb-8 text-center text-purple-700 drop-shadow-lg tracking-wide">Top Sellers</h2>
             <div className="flex flex-col md:grid md:grid-cols-4 gap-8 overflow-x-auto pb-2">
-              {(products.length ? products.slice(0, 4) : []).map((product) => {
+              {Array.isArray(products) && (products.length ? products.slice(0, 4) : []).map((product) => {
                 return (
                   <div key={product._id} className="bg-white bg-opacity-70 backdrop-blur-lg rounded-3xl shadow-2xl p-6 flex flex-col items-center min-w-[220px] max-w-xs mx-auto border border-purple-100">
-                    <img src={product.image && (product.image.startsWith('http') ? product.image : `http://localhost:5000${product.image}`)} alt={product.name} className="w-32 h-32 object-cover rounded-xl mb-4 shadow-lg" />
+                    <img src={getImageUrl(product.image)} alt={product.name} className="w-32 h-32 object-cover rounded-xl mb-4 shadow-lg" />
                     <h3 className="font-bold text-lg mb-2 text-gray-800 text-center line-clamp-2 min-h-[48px]">{product.name}</h3>
                     <div className="text-purple-700 font-extrabold text-2xl mb-3">Rs {product.price}</div>
                     <button onClick={(e) => {
@@ -225,7 +236,7 @@ const HomePage = ({ onCartChange }) => {
           <div className="container mx-auto mb-16" id="products">
             <h1 className="text-3xl font-extrabold mb-8 text-center text-purple-700 drop-shadow-2xl tracking-wide">Latest Products</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-                {products.map((product) => (
+                {Array.isArray(products) && products.map((product) => (
                     <ProductCard
                         key={product._id}
                         product={product}

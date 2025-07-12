@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getOrders, updateOrderToDelivered, deleteOrder } from '../services/api';
 import AdminLayout from '../components/AdminLayout';
 import Swal from 'sweetalert2';
+import { getImageUrl } from '../utils/imageUtils';
 
 const AdminOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -93,15 +94,7 @@ const AdminOrders = () => {
                                         <td className="px-4 py-3 text-center">
                                             {order.orderItems && order.orderItems[0] && (
                                                 <img
-                                                    src={
-                                                        order.orderItems[0].image
-                                                            ? order.orderItems[0].image.startsWith('http')
-                                                                ? order.orderItems[0].image
-                                                                : order.orderItems[0].image.startsWith('/uploads')
-                                                                    ? `http://localhost:5000${order.orderItems[0].image}`
-                                                                    : `http://localhost:5000/uploads/${order.orderItems[0].image.replace(/^\\?uploads\\?\//, '')}`
-                                                            : ''
-                                                    }
+                                                    src={getImageUrl(order.orderItems[0].image)}
                                                     alt={order.orderItems[0].name}
                                                     className="w-14 h-14 object-cover rounded-xl shadow mx-auto border-2 border-blue-100"
                                                 />
@@ -174,15 +167,7 @@ const AdminOrders = () => {
                             {selectedOrder.orderItems.map(item => (
                                 <li key={item.product} className="flex items-center gap-3 mb-2">
                                     <img
-                                        src={
-                                            item.image
-                                                ? item.image.startsWith('http')
-                                                    ? item.image
-                                                    : item.image.startsWith('/uploads')
-                                                        ? `http://localhost:5000${item.image}`
-                                                        : `http://localhost:5000/uploads/${item.image.replace(/^\\?uploads\\?\//, '')}`
-                                                : ''
-                                        }
+                                        src={getImageUrl(item.image)}
                                         alt={item.name}
                                         className="w-12 h-12 object-cover rounded-xl shadow border border-blue-100"
                                     />

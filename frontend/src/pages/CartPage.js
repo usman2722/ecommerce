@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUtils';
 
 const CartPage = ({ onCartChange }) => {
     const [cartItems, setCartItems] = useState([]);
@@ -37,7 +38,7 @@ const CartPage = ({ onCartChange }) => {
                             <div className="bg-white rounded-2xl shadow-lg p-6">
                                 {cartItems.map((item) => (
                                     <div key={item.product} className="flex items-center mb-6 pb-6 border-b last:border-b-0 last:mb-0 last:pb-0">
-                                        <img src={item.image && item.image.startsWith('/uploads') ? `http://localhost:5000${item.image}` : item.image} alt={item.name} className="w-24 h-24 object-cover rounded-xl mr-6 border-2 border-blue-100 shadow" />
+                                        <img src={getImageUrl(item.image)} alt={item.name} className="w-24 h-24 object-cover rounded-xl mr-6 border-2 border-blue-100 shadow" />
                                         <div className="flex-1">
                                             <Link to={`/product/${item.product}`} className="text-lg font-bold text-blue-700 hover:underline">{item.name}</Link>
                                             <div className="text-gray-500 text-sm mt-1">Price: <span className="font-semibold text-blue-700">Rs {item.price}</span></div>
