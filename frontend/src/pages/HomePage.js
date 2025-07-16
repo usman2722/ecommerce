@@ -7,6 +7,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { getImageUrl } from '../utils/imageUtils';
 
 const features = [
   { title: 'Free Shipping', desc: 'On all orders over $50', icon: '🚚' },
@@ -82,15 +83,6 @@ const HomePage = ({ onCartChange }) => {
       }, 3500);
       return () => clearInterval(interval);
     }, [banners]);
-
-    // Helper function to get the correct image URL
-    const getImageUrl = (imagePath) => {
-        if (!imagePath) return '';
-        if (imagePath.startsWith('http')) return imagePath;
-        // Use environment variable for API URL or fallback to relative path
-        const baseUrl = process.env.REACT_APP_API_URL || '';
-        return `${baseUrl}${imagePath}`;
-    };
 
     return (
         <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 via-pink-100 to-purple-200 pb-12">

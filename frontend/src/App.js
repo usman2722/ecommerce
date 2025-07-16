@@ -19,6 +19,7 @@ import AdminEditProduct from './pages/AdminEditProduct';
 import AdminAddProduct from './pages/AdminAddProduct';
 import AdminBanners from './pages/AdminBanners';
 import AdminLoginPage from './pages/AdminLoginPage';
+import AdminSignupPage from './pages/AdminSignupPage';
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -59,6 +60,8 @@ function App() {
             <Route path="/admin/products/new" element={<PrivateRoute adminOnly={true}><AdminAddProduct /></PrivateRoute>} />
             <Route path="/admin/banners" element={<PrivateRoute adminOnly={true}><AdminBanners /></PrivateRoute>} />
             <Route path="/admin/login" element={<AdminLoginPage />} />
+            <Route path="/admin-login" element={<AdminLoginPage />} />
+            <Route path="/admin-signup" element={<AdminSignupPage />} />
 
             <Route path="/categories" element={<CategoriesPage onCartChange={updateCartCount} />} />
             <Route path="/about" element={<AboutPage />} />

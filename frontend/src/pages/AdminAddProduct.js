@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../components/AdminLayout';
 import { createProduct } from '../services/api';
 import axios from 'axios';
+import API from '../services/api';
 
 const CATEGORY_OPTIONS = ['Electronics', 'Fashion', 'Sports', 'Other'];
 
@@ -55,18 +56,14 @@ const AdminAddProduct = () => {
     setUploading(true);
     setMessage('');
     try {
-      // Use environment variable for API URL and adminInfo token
       const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/products/upload`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${adminInfo?.token}`,
-          },
-        }
-      );
+      // Use API instance for consistent base URL
+      const { data } = await API.post('/products/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${adminInfo?.token}`,
+        },
+      });
       setForm((prev) => ({ ...prev, image: data.image }));
       setMessage('Image uploaded!');
     } catch (err) {
@@ -74,6 +71,10 @@ const AdminAddProduct = () => {
     }
     setUploading(false);
   };
+
+  const backendBaseUrl = process.env.REACT_APP_API_URL
+    ? process.env.REACT_APP_API_URL.replace('/api', '')
+    : 'http://localhost:5000';
 
   return (
     <AdminLayout>
@@ -106,8 +107,7 @@ const AdminAddProduct = () => {
                 />
                 {uploading && <span className="text-blue-600 font-semibold">Uploading...</span>}
                 {form.image && (
-                  // Use environment variable for backend URL in image preview
-                  <img src={`${process.env.REACT_APP_API_URL.replace('/api', '')}${form.image}`} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100" />
+                  <img src={`${backendBaseUrl}${form.image}`} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100" />
                 )}
               </div>
               <input type="hidden" name="image" value={form.image} />

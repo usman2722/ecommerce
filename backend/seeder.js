@@ -16,7 +16,8 @@ const importData = async () => {
         await Product.deleteMany();
         await User.deleteMany();
 
-        const createdUsers = await User.insertMany(users);
+        // Use create instead of insertMany to trigger pre-save hooks for password hashing
+        const createdUsers = await User.create(users);
 
         const adminUser = createdUsers[0]._id;
 

@@ -4,7 +4,7 @@ const users = [
     {
         name: 'Admin User',
         email: 'admin@example.com',
-        password: bcrypt.hashSync('password123', 10),
+        password: 'password123', // plain text, will be hashed by the model
         role: 'admin',
     },
 ];

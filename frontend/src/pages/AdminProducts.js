@@ -60,10 +60,10 @@ const AdminProducts = () => {
                                     <td className="px-2 md:px-4 py-2 md:py-3 text-center">
                                         <img src={getImageUrl(product.image)} alt={product.name} className="h-10 w-10 md:h-14 md:w-14 object-cover rounded-xl shadow border-2 border-blue-100 mx-auto" />
                                     </td>
-                                    <td className="px-2 md:px-4 py-2 md:py-3 font-semibold text-blue-700">{product.name}</td>
-                                    <td className="px-2 md:px-4 py-2 md:py-3 font-bold text-purple-700">Rs {Math.round(product.price)}</td>
-                                    <td className="px-2 md:px-4 py-2 md:py-3">{product.category}</td>
-                                    <td className="px-2 md:px-4 py-2 md:py-3">{product.stock}</td>
+                                    <td className="px-2 md:px-4 py-2 md:py-3 font-semibold text-blue-700 text-center">{product.name}</td>
+                                    <td className="px-2 md:px-4 py-2 md:py-3 font-bold text-purple-700 text-center">Rs {Math.round(product.price)}</td>
+                                    <td className="px-2 md:px-4 py-2 md:py-3 text-center">{product.category}</td>
+                                    <td className="px-2 md:px-4 py-2 md:py-3 text-center">{product.stock}</td>
                                     <td className="px-2 md:px-4 py-2 md:py-3 flex flex-col md:flex-row gap-2 justify-center items-center">
                                         <Link to={`/admin/products/${product._id}/edit`} className="w-full md:w-auto">
                                             <button className="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded-full shadow transition w-full md:w-auto">Edit</button>

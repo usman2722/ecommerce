@@ -83,6 +83,7 @@ const AdminOrders = () => {
                                     <th className="py-3 px-4 font-bold">USER</th>
                                     <th className="py-3 px-4 font-bold">DATE</th>
                                     <th className="py-3 px-4 font-bold">TOTAL</th>
+                                    <th className="py-3 px-4 font-bold">QTY</th>
                                     <th className="py-3 px-4 font-bold">PAID</th>
                                     <th className="py-3 px-4 font-bold">DELIVERED</th>
                                     <th className="py-3 px-4 font-bold">ACTIONS</th>
@@ -104,6 +105,7 @@ const AdminOrders = () => {
                                         <td className="px-4 py-3 font-semibold text-blue-700">{order.user && order.user.name}</td>
                                         <td className="px-4 py-3">{order.createdAt.substring(0, 10)}</td>
                                         <td className="px-4 py-3 font-bold text-purple-700">Rs {Math.round(order.totalPrice)}</td>
+                                        <td className="px-4 py-3 font-bold text-blue-700">{order.orderItems.reduce((sum, item) => sum + (item.qty || 0), 0)}</td>
                                         <td className="px-4 py-3">
                                             {order.isPaid && order.paidAt
                                                 ? <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">{order.paidAt.substring(0, 10)}</span>

@@ -2,8 +2,10 @@ import axios from 'axios';
 
 // Use environment variable for API base URL so it works for both local and production
 const API = axios.create({
-    baseURL: process.env.REACT_APP_API_URL, // e.g., https://your-railway-backend-url.up.railway.app/api
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api', // fallback to local backend
 });
+
+console.log('API base URL:', API.defaults.baseURL);
 
 API.interceptors.request.use((req) => {
     // Use adminInfo token for admin routes, userInfo for others
@@ -19,8 +21,12 @@ API.interceptors.request.use((req) => {
 export const fetchProducts = () => API.get('/products');
 export const fetchProduct = (id) => API.get(`/products/${id}`);
 
-export const signIn = (formData) => API.post('/auth/login', formData);
+export const signIn = (formData) => {
+    console.log('Login request to:', '/auth/login', formData);
+    return API.post('/auth/login', formData);
+};
 export const signUp = (formData) => API.post('/auth/register', formData);
+export const adminSignUp = (formData) => API.post('/auth/admin-signup', formData);
 
 export const getOrders = () => API.get('/orders');
 export const getUsers = () => API.get('/users');
