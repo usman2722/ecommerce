@@ -127,7 +127,7 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Top Sellers / Trending Products */}
-          <div className="container mx-auto mb-16">
+          <div className="container mx-auto px-8 sm:px-0 mb-16">
             <h2 className="text-3xl font-extrabold mb-8 text-center text-purple-700 drop-shadow-lg tracking-wide">Top Sellers</h2>
             <div className="flex flex-col md:grid md:grid-cols-4 gap-8 overflow-x-auto pb-2">
               {Array.isArray(products) && (products.length ? products.slice(0, 4) : []).map((product) => {
@@ -166,11 +166,11 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Features */}
-          <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          <div className="container mx-auto px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-16">
             {features.map((f, i) => (
               <div
                 key={f.title}
-                className={`rounded-3xl shadow-2xl p-8 flex flex-col items-center text-center ${featureCardBg[i % featureCardBg.length]} border-0 relative overflow-hidden`}
+                className={`rounded-3xl shadow-2xl p-8 flex flex-col items-center text-center ${featureCardBg[i % featureCardBg.length]} border-0 relative overflow-hidden `}
                 style={{ minHeight: 200 }}
               >
                 <div className={`flex items-center justify-center w-20 h-20 rounded-full ${featureIconBg[i % featureIconBg.length]} mb-5 shadow-lg` }>
@@ -183,7 +183,7 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Brands Carousel */}
-          <div className="container mx-auto mb-16">
+          <div className="container mx-auto px-4 sm:px-0 mb-16">
             <h2 className="text-3xl font-extrabold mb-8 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide">Brands We Carry</h2>
             <div className="rounded-3xl shadow-2xl bg-white bg-opacity-70 backdrop-blur-lg border-2 border-purple-200 px-4 py-8">
               <Slider
@@ -225,7 +225,7 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Latest Products */}
-          <div className="container mx-auto mb-16" id="products">
+          <div className="container mx-auto px-8 sm:px-0 mb-16" id="products">
             <h1 className="text-3xl font-extrabold mb-8 text-center text-purple-700 drop-shadow-2xl tracking-wide">Latest Products</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                 {Array.isArray(products) && products.map((product) => (
@@ -260,23 +260,21 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Testimonials */}
-          <div className="bg-white bg-opacity-70 backdrop-blur-lg py-16 rounded-3xl shadow-2xl container mx-auto mb-16">
-            <div className="container mx-auto">
-              <h2 className="text-2xl font-extrabold mb-8 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide">What Our Customers Say</h2>
-              <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-                {testimonials.map((t) => (
-                  <div key={t.name} className="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 max-w-xs text-center border border-purple-100">
-                    <img src={t.img} alt={t.name} className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg" />
-                    <p className="text-gray-700 mb-3 text-lg font-medium">"{t.text}"</p>
-                    <div className="font-semibold text-purple-700">- {t.name}</div>
-                  </div>
-                ))}
-              </div>
+          <div className="container mx-auto px-8 sm:px-0 mb-16 bg-white bg-opacity-70 backdrop-blur-lg py-16 rounded-3xl shadow-2xl">
+            <h2 className="text-2xl font-extrabold mb-8 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide">What Our Customers Say</h2>
+            <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+              {testimonials.map((t) => (
+                <div key={t.name} className="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 max-w-xs text-center border border-purple-100">
+                  <img src={t.img} alt={t.name} className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg" />
+                  <p className="text-gray-700 mb-3 text-lg font-medium">"{t.text}"</p>
+                  <div className="font-semibold text-purple-700">- {t.name}</div>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Newsletter */}
-          <div className="container mx-auto py-8 mb-0">
+          <div className="container mx-auto px-8 sm:px-0 py-8 mb-0">
             <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between shadow-2xl">
               <div className="mb-6 md:mb-0">
                 <h3 className="text-white text-2xl font-extrabold mb-2 drop-shadow-lg">Join Our Newsletter</h3>

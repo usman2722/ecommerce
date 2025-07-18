@@ -9,7 +9,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-200 border border-transparent hover:scale-105 hover:shadow-2xl hover:border-purple-400">
+        <div className="bg-white rounded-lg shadow-2xl md:shadow-md overflow-hidden transition-transform duration-200 border border-transparent hover:scale-105 hover:shadow-2xl hover:border-purple-400">
             <div className="relative">
                 <Link to={`/product/${product._id}`}>
                     <img src={getImageUrl(product.image)} alt={product.name} className="w-full h-64 object-cover" />

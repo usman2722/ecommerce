@@ -24,7 +24,7 @@ const Header = ({ cartCount, theme = 'default' }) => {
 
     return (
         <header className={headerClass}>
-            <div className="container mx-auto flex items-center py-3 px-4 relative">
+            <div className="container mx-auto flex items-center py-3 px-8 sm:px-0 relative">
                 <Link to="/" className="flex items-center gap-2">
                     <img src="https://marketplace.canva.com/EAFzjXx_i5w/1/0/1600w/canva-blue-illustrative-e-commerce-online-shop-logo-fZejT2DpGCw.jpg" alt="E-Commerce Logo" className="h-10 w-10 object-contain" />
                     <span className="text-2xl font-extrabold text-gray-800 tracking-tight">ShopEase</span>
@@ -112,7 +112,7 @@ const Header = ({ cartCount, theme = 'default' }) => {
                                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-500 transition">
                                     <InstagramIcon style={{ fontSize: 28 }} />
                                 </a>
-                                <Link to="/cart" className="relative text-gray-700 hover:text-blue-600 transition flex items-center">
+                                <Link to="/cart" className="relative text-gray-700 hover:text-blue-600 transition flex items-center" onClick={() => setMobileMenuOpen(false)}>
                                     <ShoppingCartIcon style={{ fontSize: 32 }} />
                                     {cartCount > 0 && (
                                         <span className="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-2 py-0.5 text-white">

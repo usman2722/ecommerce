@@ -67,7 +67,7 @@ const AboutPage = () => {
       </div>
 
       {/* Company Story & Facts */}
-      <div className="container mx-auto px-4 mb-16">
+      <div className="container mx-auto px-8 sm:px-0 mb-16">
         <div className="max-w-3xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold mb-4 text-blue-800">Our Story</h2>
           <p className="text-gray-700 text-lg">ShopEase was founded in 2022 with a passion for connecting people to the products they love. From humble beginnings, we've grown into a trusted online destination for thousands of happy customers. Our commitment to quality, value, and service drives everything we do.</p>
@@ -84,7 +84,7 @@ const AboutPage = () => {
 
       {/* Why Shop With Us */}
       <div className="bg-white py-12 mb-16">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-8 sm:px-0 max-w-5xl">
           <h2 className="text-2xl font-bold mb-8 text-center text-blue-800">Why Shop With Us?</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {whyShop.map((item, i) => (
@@ -99,7 +99,7 @@ const AboutPage = () => {
       </div>
 
       {/* Timeline / Milestones */}
-      <div className="container mx-auto px-4 mb-16">
+      <div className="container mx-auto px-8 sm:px-0 mb-16">
         <h2 className="text-2xl font-bold mb-8 text-center text-blue-800">Our Journey</h2>
         <div className="relative max-w-2xl mx-auto">
           <div className="border-l-4 border-blue-200 absolute h-full left-6 top-0"></div>
@@ -133,7 +133,7 @@ const AboutPage = () => {
 
       {/* Mission & Values */}
       <div className="bg-white py-12 mb-16">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-8 sm:px-0 max-w-4xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl font-bold mb-3 text-blue-800">Our Mission</h2>
@@ -152,7 +152,7 @@ const AboutPage = () => {
       </div>
 
       {/* Team Section */}
-      <div className="container mx-auto px-4 mb-16">
+      <div className="container mx-auto px-8 sm:px-0 mb-16">
         <h2 className="text-3xl font-bold mb-8 text-blue-800 text-center">Meet Our Team</h2>
         <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
           {team.map(member => (

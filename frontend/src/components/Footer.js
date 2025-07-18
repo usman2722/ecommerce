@@ -6,8 +6,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Footer = () => (
   <footer className="bg-blue-900 text-white py-4 mt-0 shadow-inner">
-    <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8 px-4">
-      <div className="mb-4 md:mb-0 flex flex-col items-center md:items-start">
+    <div className="container mx-auto flex flex-col md:flex-row justify-between items-start md:items-start gap-8 px-4">
+      <div className="mb-4 md:mb-0 flex flex-col items-center md:items-start px-4 md:px-0">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-2xl font-extrabold text-white tracking-tight drop-shadow-lg">ShopEase</span>
         </div>
@@ -24,7 +24,7 @@ const Footer = () => (
           </a>
         </div>
       </div>
-      <div>
+      <div className="items-start px-4 md:px-0">
         <h4 className="font-bold mb-2 text-white drop-shadow">Quick Links</h4>
         <ul className="space-y-1 text-sm">
           <li><Link to="/" className="hover:text-blue-400">Home</Link></li>
@@ -33,7 +33,7 @@ const Footer = () => (
           <li><Link to="/contact" className="hover:text-blue-400">Contact Us</Link></li>
         </ul>
       </div>
-      <div>
+      <div className="items-start px-4 md:px-0">
         <h4 className="font-bold mb-2 text-white drop-shadow">Contact</h4>
         <ul className="text-sm space-y-1">
           <li>Email: <a href="mailto:support@shopease.com" className="hover:text-blue-400">support@shopease.com</a></li>

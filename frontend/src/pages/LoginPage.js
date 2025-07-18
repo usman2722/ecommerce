@@ -35,7 +35,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center px-8 sm:px-0">
             <div className="w-full max-w-md">
                 {redirectMsg && (
                     <div className="bg-yellow-100 text-yellow-800 p-2 mb-4 rounded text-center font-semibold">{redirectMsg}</div>

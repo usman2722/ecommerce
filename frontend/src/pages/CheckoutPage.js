@@ -60,7 +60,7 @@ const CheckoutPage = ({ onCartChange }) => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-8 bg-gradient-to-br from-blue-100 via-pink-100 to-purple-200 rounded-3xl shadow-2xl mt-12 border border-purple-100">
+        <div className="max-w-2xl mx-auto px-8 py-8 bg-gradient-to-br from-blue-100 via-pink-100 to-purple-200 rounded-3xl shadow-2xl mt-12 border border-purple-100">
             {orderSuccess ? (
                 <div className="flex flex-col items-center justify-center py-16 animate-fade-in">
                     <svg className="w-20 h-20 mb-6 text-green-500 animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

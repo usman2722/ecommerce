@@ -7,6 +7,10 @@ const CartPage = ({ onCartChange }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         const items = JSON.parse(localStorage.getItem('cart')) || [];
         setCartItems(items);
     }, []);
@@ -24,7 +28,7 @@ const CartPage = ({ onCartChange }) => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-10">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-8 sm:px-0">
                 <h1 className="text-4xl font-extrabold mb-8 text-blue-800 text-center drop-shadow">Shopping Cart</h1>
                 {cartItems.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20">

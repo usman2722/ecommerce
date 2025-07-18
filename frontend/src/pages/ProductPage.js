@@ -61,14 +61,14 @@ const ProductPage = () => {
                     />
                 </div>
                 <div className="mt-8 md:mt-16">
-                    <h1 className="text-3xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
+                    <h1 className="text-3xl font-extrabold mb-6 px-8 md:px-0 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
                         {product.name}
                     </h1>
-                    <p className="text-gray-700 mb-6 text-lg" style={{ marginTop: '18px' }}>{product.description}</p>
-                    <p className="text-2xl font-extrabold mb-6 text-purple-700" style={{ marginTop: '18px' }}>
+                    <p className="text-gray-700 mb-6 text-lg px-8 md:px-0" style={{ marginTop: '18px' }}>{product.description}</p>
+                    <p className="text-2xl font-extrabold mb-6 text-purple-700 px-8 md:px-0" style={{ marginTop: '18px' }}>
                         Rs {product.price}
                     </p>
-                    <div className="flex items-center mb-4">
+                    <div className="flex items-center mb-4 px-8 md:px-0">
                         <span className="mr-2">Qty</span>
                         <select value={qty} onChange={(e) => setQty(Number(e.target.value))}>
                             {[...Array(product.stock).keys()].map((x) => (
@@ -78,14 +78,16 @@ const ProductPage = () => {
                             ))}
                         </select>
                     </div>
-                    <button
-                        className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition"
-                        onClick={addToCartHandler}
-                        disabled={product.stock === 0}
-                        style={{ marginTop: '24px' }}
-                    >
-                        Add to Cart
-                    </button>
+                    <div className="px-8 md:px-0">
+                        <button
+                            className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition"
+                            onClick={addToCartHandler}
+                            disabled={product.stock === 0}
+                            style={{ marginTop: '24px' }}
+                        >
+                            Add to Cart
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

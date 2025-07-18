@@ -63,7 +63,7 @@ const CategoriesPage = ({ onCartChange }) => {
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-white min-h-screen py-10">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-8 sm:px-0">
         <h1 className="text-4xl font-extrabold mb-8 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg text-center">Shop by Category</h1>
         {cartMessage && (
           <div className="fixed top-6 left-1/2 -translate-x-1/2 bg-green-100 text-green-700 px-6 py-2 rounded shadow-lg z-50">{cartMessage}</div>
