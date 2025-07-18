@@ -280,9 +280,9 @@ const HomePage = ({ onCartChange }) => {
                 <h3 className="text-white text-2xl font-extrabold mb-2 drop-shadow-lg">Join Our Newsletter</h3>
                 <p className="text-pink-100">Get exclusive offers and updates straight to your inbox.</p>
               </div>
-              <form className="flex w-full md:w-auto">
-                <input type="email" placeholder="Your email" className="rounded-l px-4 py-2 outline-none text-gray-700" />
-                <button type="submit" className="bg-white text-purple-600 font-bold px-6 py-2 rounded-r hover:bg-purple-100 transition">Subscribe</button>
+              <form className="flex flex-col md:flex-row w-full md:w-auto">
+                <input type="email" placeholder="Your email" className="rounded-l md:rounded-l px-4 py-2 outline-none text-gray-700 w-full md:w-auto mb-2 md:mb-0" />
+                <button type="submit" className="bg-white text-purple-600 font-bold px-6 py-2 rounded-r md:rounded-r hover:bg-purple-100 transition w-full md:w-auto">Subscribe</button>
               </form>
             </div>
           </div>
