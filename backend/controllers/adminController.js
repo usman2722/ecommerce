@@ -81,7 +81,7 @@ const getBanners = async (req, res) => {
 // @access  Private/Admin
 const addBanner = async (req, res) => {
   const { title, link } = req.body;
-  const image = req.file ? `/uploads/${req.file.filename}` : null;
+  const image = req.file ? req.file.path : null; // Use Cloudinary URL
   if (!image) return res.status(400).json({ message: 'Image is required' });
   const banner = new Banner({ image, title, link });
   await banner.save();
