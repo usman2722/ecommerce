@@ -26,11 +26,11 @@ const SignupPage = () => {
     };
 
     return (
-        <div className="flex justify-center">
-            <div className="w-full max-w-md">
-                <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <h1 className="text-2xl font-bold mb-4">Sign Up</h1>
-                    <div className="mb-4">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-pink-50 to-purple-100 px-2">
+            <div className="w-full max-w-xs sm:max-w-md bg-gradient-to-br from-white via-blue-100 to-pink-100 border border-blue-200 rounded-2xl shadow-2xl px-1 py-4 sm:px-4 sm:py-6 flex flex-col items-center">
+                <form onSubmit={handleSubmit} className="w-full flex flex-col gap-1">
+                    <h1 className="text-3xl font-extrabold mb-6 text-center text-gray-800 tracking-wide">Sign Up</h1>
+                    <div className="mb-2">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                             Name
                         </label>
@@ -43,7 +43,7 @@ const SignupPage = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-2">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                             Email
                         </label>
@@ -56,7 +56,7 @@ const SignupPage = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-2">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                             Password
                         </label>
@@ -69,7 +69,7 @@ const SignupPage = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-2">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
                             Confirm Password
                         </label>
@@ -82,19 +82,15 @@ const SignupPage = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="flex items-center justify-between">
-                        <button
-                            className="bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="submit"
-                        >
-                            Sign Up
-                        </button>
-                        <Link
-                            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                            to="/login"
-                        >
-                            Already have an account?
-                        </Link>
+                    <button
+                        className="w-full mt-2 bg-gradient-to-r from-blue-600 to-purple-500 hover:from-blue-700 hover:to-purple-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        type="submit"
+                    >
+                        Sign Up
+                    </button>
+                    <div className="w-full mt-2 text-center">
+                        <span className="text-gray-600 text-sm">Already have an account? </span>
+                        <Link to="/login" className="text-blue-600 font-bold hover:underline">Sign in</Link>
                     </div>
                 </form>
             </div>
