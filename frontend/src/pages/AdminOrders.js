@@ -78,15 +78,15 @@ const AdminOrders = () => {
                         <table className="min-w-full text-sm">
                             <thead className="bg-gradient-to-r from-blue-600 to-purple-500 text-white sticky top-0 z-10">
                                 <tr>
-                                    <th className="py-3 px-4 font-bold">IMAGE</th>
-                                    <th className="py-3 px-4 font-bold">ID</th>
-                                    <th className="py-3 px-4 font-bold">USER</th>
-                                    <th className="py-3 px-4 font-bold">DATE</th>
-                                    <th className="py-3 px-4 font-bold">TOTAL</th>
-                                    <th className="py-3 px-4 font-bold">QTY</th>
-                                    <th className="py-3 px-4 font-bold">PAID</th>
-                                    <th className="py-3 px-4 font-bold">DELIVERED</th>
-                                    <th className="py-3 px-4 font-bold">ACTIONS</th>
+                                    <th className="py-3 px-4 font-bold text-center">IMAGE</th>
+                                    <th className="py-3 px-4 font-bold text-center">ID</th>
+                                    <th className="py-3 px-4 font-bold text-center">USER</th>
+                                    <th className="py-3 px-4 font-bold text-center">DATE</th>
+                                    <th className="py-3 px-4 font-bold text-center">TOTAL</th>
+                                    <th className="py-3 px-4 font-bold text-center">QTY</th>
+                                    <th className="py-3 px-4 font-bold text-center">PAID</th>
+                                    <th className="py-3 px-4 font-bold text-center">DELIVERED</th>
+                                    <th className="py-3 px-4 font-bold text-center">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,25 +101,25 @@ const AdminOrders = () => {
                                                 />
                                             )}
                                         </td>
-                                        <td className="px-4 py-3 font-mono text-xs text-gray-700">{order._id}</td>
-                                        <td className="px-4 py-3 font-semibold text-blue-700">{order.user && order.user.name}</td>
-                                        <td className="px-4 py-3">{order.createdAt.substring(0, 10)}</td>
-                                        <td className="px-4 py-3 font-bold text-purple-700">Rs {Math.round(order.totalPrice)}</td>
-                                        <td className="px-4 py-3 font-bold text-blue-700">{order.orderItems.reduce((sum, item) => sum + (item.qty || 0), 0)}</td>
-                                        <td className="px-4 py-3">
+                                        <td className="px-4 py-3 font-mono text-xs text-gray-700 text-center">{order._id}</td>
+                                        <td className="px-4 py-3 font-semibold text-blue-700 text-center">{order.user && order.user.name}</td>
+                                        <td className="px-4 py-3 text-center">{order.createdAt.substring(0, 10)}</td>
+                                        <td className="px-4 py-3 font-bold text-purple-700 text-center">Rs {Math.round(order.totalPrice)}</td>
+                                        <td className="px-4 py-3 font-bold text-blue-700 text-center">{order.orderItems.reduce((sum, item) => sum + (item.qty || 0), 0)}</td>
+                                        <td className="px-4 py-3 text-center">
                                             {order.isPaid && order.paidAt
                                                 ? <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">{order.paidAt.substring(0, 10)}</span>
                                                 : <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold">No</span>
                                             }
                                         </td>
-                                        <td className="px-4 py-3">
+                                        <td className="px-4 py-3 text-center">
                                             {order.isDelivered && order.deliveredAt
                                                 ? <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">{order.deliveredAt.substring(0, 10)}</span>
                                                 : <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold">No</span>
                                             }
                                         </td>
-                                        <td className="px-4 py-3">
-                                            <div className="flex gap-2 justify-center">
+                                        <td className="px-4 py-3 text-center">
+                                            <div className="flex gap-2 justify-center items-center">
                                                 <button className="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded-full shadow transition" onClick={() => setSelectedOrder(order)}>
                                                     Details
                                                 </button>

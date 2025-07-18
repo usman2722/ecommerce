@@ -64,7 +64,8 @@ const AdminProducts = () => {
                                     <td className="px-2 md:px-4 py-2 md:py-3 font-bold text-purple-700 text-center">Rs {Math.round(product.price)}</td>
                                     <td className="px-2 md:px-4 py-2 md:py-3 text-center">{product.category}</td>
                                     <td className="px-2 md:px-4 py-2 md:py-3 text-center">{product.stock}</td>
-                                    <td className="px-2 md:px-4 py-2 md:py-3 flex flex-col md:flex-row gap-2 justify-center items-center">
+                                    <td className="px-2 md:px-4 py-2 md:py-3 text-center">
+                                      <div className="flex flex-col md:flex-row gap-2 justify-center items-center">
                                         <Link to={`/admin/products/${product._id}/edit`} className="w-full md:w-auto">
                                             <button className="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded-full shadow transition w-full md:w-auto">Edit</button>
                                         </Link>
@@ -74,6 +75,7 @@ const AdminProducts = () => {
                                         >
                                             Delete
                                         </button>
+                                      </div>
                                     </td>
                                 </tr>
                             ))}
