@@ -131,10 +131,10 @@ const HomePage = ({ onCartChange }) => {
           {/* Top Sellers / Trending Products */}
           <div className="container mx-auto px-8 sm:px-0 mb-8 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center text-purple-700 drop-shadow-lg tracking-wide">Top Sellers</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 overflow-x-auto pb-2">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-2">
               {Array.isArray(products) && (products.length ? products.slice(0, 4) : []).map((product) => {
                 return (
-                  <div key={product._id} className="bg-white bg-opacity-70 backdrop-blur-lg rounded-3xl shadow-2xl p-3 sm:p-6 flex flex-col items-center min-w-[160px] sm:min-w-[220px] max-w-xs mx-auto border border-purple-100">
+                  <div key={product._id} className="bg-white bg-opacity-70 backdrop-blur-lg rounded-3xl shadow-2xl p-2 sm:p-6 flex flex-col items-center max-w-xs mx-auto border border-purple-100">
                     <img src={getImageUrl(product.image)} alt={product.name} className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl mb-3 sm:mb-4 shadow-lg" />
                     <h3 className="font-bold text-sm sm:text-lg mb-2 text-gray-800 text-center line-clamp-2 min-h-[40px] sm:min-h-[48px]">{product.name}</h3>
                     <div className="text-purple-700 font-extrabold text-lg sm:text-2xl mb-3">Rs {product.price}</div>
