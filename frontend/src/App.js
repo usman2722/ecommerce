@@ -42,7 +42,7 @@ function App() {
   return (
     <>
       {!location.pathname.startsWith('/admin') && <Header cartCount={cartCount} />}
-      <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 via-pink-100 to-purple-200 pb-12">
+      <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 via-pink-100 to-purple-200 pb-4 sm:pb-12">
         <main className="py-3">
           <Routes>
             <Route path="/" element={<HomePage onCartChange={updateCartCount} />} />

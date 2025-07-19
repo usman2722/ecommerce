@@ -102,7 +102,7 @@ const CategoriesPage = ({ onCartChange }) => {
             <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative" onClick={e => e.stopPropagation()}>
               <button className="absolute top-4 right-4 text-2xl text-gray-500 hover:text-blue-700" onClick={() => setViewAllCategory(null)}>&times;</button>
               <h2 className="text-2xl font-bold text-blue-700 mb-6 text-center">{viewAllCategory} Products</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                 {getCategoryProducts(viewAllCategory).map((product) => (
                   <ProductCard product={product} key={product._id} onAddToCart={() => handleAddToCart(product)} />
                 ))}

@@ -127,15 +127,15 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Top Sellers / Trending Products */}
-          <div className="container mx-auto px-8 sm:px-0 mb-16">
-            <h2 className="text-3xl font-extrabold mb-8 text-center text-purple-700 drop-shadow-lg tracking-wide">Top Sellers</h2>
-            <div className="flex flex-col md:grid md:grid-cols-4 gap-8 overflow-x-auto pb-2">
+          <div className="container mx-auto px-8 sm:px-0 mb-8 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center text-purple-700 drop-shadow-lg tracking-wide">Top Sellers</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 overflow-x-auto pb-2">
               {Array.isArray(products) && (products.length ? products.slice(0, 4) : []).map((product) => {
                 return (
-                  <div key={product._id} className="bg-white bg-opacity-70 backdrop-blur-lg rounded-3xl shadow-2xl p-6 flex flex-col items-center min-w-[220px] max-w-xs mx-auto border border-purple-100">
-                    <img src={getImageUrl(product.image)} alt={product.name} className="w-32 h-32 object-cover rounded-xl mb-4 shadow-lg" />
-                    <h3 className="font-bold text-lg mb-2 text-gray-800 text-center line-clamp-2 min-h-[48px]">{product.name}</h3>
-                    <div className="text-purple-700 font-extrabold text-2xl mb-3">Rs {product.price}</div>
+                  <div key={product._id} className="bg-white bg-opacity-70 backdrop-blur-lg rounded-3xl shadow-2xl p-3 sm:p-6 flex flex-col items-center min-w-[160px] sm:min-w-[220px] max-w-xs mx-auto border border-purple-100">
+                    <img src={getImageUrl(product.image)} alt={product.name} className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-xl mb-3 sm:mb-4 shadow-lg" />
+                    <h3 className="font-bold text-sm sm:text-lg mb-2 text-gray-800 text-center line-clamp-2 min-h-[40px] sm:min-h-[48px]">{product.name}</h3>
+                    <div className="text-purple-700 font-extrabold text-lg sm:text-2xl mb-3">Rs {product.price}</div>
                     <button onClick={(e) => {
                       e.preventDefault();
                       let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -158,7 +158,7 @@ const HomePage = ({ onCartChange }) => {
                       setCartMessage(`${product.name} added to cart!`);
                       setTimeout(() => setCartMessage(''), 2000);
                       if (onCartChange) onCartChange();
-                    }} className="mt-auto px-6 py-2 rounded-full font-bold text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 shadow-lg transition">Add to Cart</button>
+                    }} className="mt-auto px-4 sm:px-6 py-2 rounded-full font-bold text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 shadow-lg transition text-sm sm:text-base">Add to Cart</button>
                   </div>
                 );
               })}
@@ -166,25 +166,25 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Features */}
-          <div className="container mx-auto px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          <div className="container mx-auto px-8 sm:px-0 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mb-8 sm:mb-16">
             {features.map((f, i) => (
               <div
                 key={f.title}
-                className={`rounded-3xl shadow-2xl p-8 flex flex-col items-center text-center ${featureCardBg[i % featureCardBg.length]} border-0 relative overflow-hidden `}
-                style={{ minHeight: 200 }}
+                className={`rounded-3xl shadow-2xl p-4 sm:p-8 flex flex-col items-center text-center ${featureCardBg[i % featureCardBg.length]} border-0 relative overflow-hidden`}
+                style={{ minHeight: 'auto', sm: { minHeight: 200 } }}
               >
-                <div className={`flex items-center justify-center w-20 h-20 rounded-full ${featureIconBg[i % featureIconBg.length]} mb-5 shadow-lg` }>
-                  <span className="text-5xl" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.10))' }}>{f.icon}</span>
+                <div className={`flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full ${featureIconBg[i % featureIconBg.length]} mb-3 sm:mb-5 shadow-lg` }>
+                  <span className="text-3xl sm:text-5xl" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.10))' }}>{f.icon}</span>
                 </div>
-                <h3 className="font-extrabold text-xl mb-2 text-white drop-shadow-lg">{f.title}</h3>
-                <p className="text-white text-opacity-90 text-base font-medium drop-shadow-sm">{f.desc}</p>
+                <h3 className="font-extrabold text-sm sm:text-xl mb-1 sm:mb-2 text-white drop-shadow-lg">{f.title}</h3>
+                <p className="text-white text-opacity-90 text-xs sm:text-base font-medium drop-shadow-sm">{f.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Brands Carousel */}
-          <div className="container mx-auto px-4 sm:px-0 mb-16">
-            <h2 className="text-3xl font-extrabold mb-8 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide">Brands We Carry</h2>
+          <div className="container mx-auto px-4 sm:px-0 mb-8 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide">Brands We Carry</h2>
             <div className="rounded-3xl shadow-2xl bg-white bg-opacity-70 backdrop-blur-lg border-2 border-purple-200 px-4 py-8">
               <Slider
                 dots={false}
@@ -225,9 +225,9 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Latest Products */}
-          <div className="container mx-auto px-8 sm:px-0 mb-16" id="products">
-            <h1 className="text-3xl font-extrabold mb-8 text-center text-purple-700 drop-shadow-2xl tracking-wide">Latest Products</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          <div className="container mx-auto px-8 sm:px-0 mb-8 sm:mb-16" id="products">
+            <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center text-purple-700 drop-shadow-2xl tracking-wide">Latest Products</h1>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
                 {Array.isArray(products) && products.map((product) => (
                     <ProductCard
                         key={product._id}
@@ -258,11 +258,39 @@ const HomePage = ({ onCartChange }) => {
                 ))}
             </div>
           </div>
+         
 
           {/* Testimonials */}
-          <div className="container mx-auto px-8 sm:px-0 mb-16 bg-white bg-opacity-70 backdrop-blur-lg py-16 rounded-3xl shadow-2xl">
-            <h2 className="text-2xl font-extrabold mb-8 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide">What Our Customers Say</h2>
-            <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+          <div className="container mx-auto px-8 sm:px-0 mb-8 sm:mb-16 bg-white bg-opacity-70 backdrop-blur-lg py-8 sm:py-16 rounded-3xl shadow-2xl">
+            <h2 className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide">What Our Customers Say</h2>
+            
+            {/* Mobile Carousel */}
+            <div className="block md:hidden">
+              <Slider
+                dots={true}
+                infinite={true}
+                speed={500}
+                slidesToShow={1}
+                slidesToScroll={1}
+                autoplay={true}
+                autoplaySpeed={4000}
+                arrows={false}
+                className="px-4"
+              >
+                {testimonials.map((t) => (
+                  <div key={t.name} className="px-2">
+                    <div className="bg-white bg-opacity-80 rounded-2xl shadow-xl p-6 text-center border border-purple-100">
+                      <img src={t.img} alt={t.name} className="w-16 h-16 rounded-full mx-auto mb-3 object-cover border-4 border-white shadow-lg" />
+                      <p className="text-gray-700 mb-2 text-base font-medium">"{t.text}"</p>
+                      <div className="font-semibold text-purple-700 text-sm">- {t.name}</div>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className="hidden md:flex flex-row gap-8 justify-center items-center">
               {testimonials.map((t) => (
                 <div key={t.name} className="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 max-w-xs text-center border border-purple-100">
                   <img src={t.img} alt={t.name} className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-lg" />
@@ -274,7 +302,7 @@ const HomePage = ({ onCartChange }) => {
           </div>
 
           {/* Newsletter */}
-          <div className="container mx-auto px-8 sm:px-0 py-8 mb-0">
+          <div className="container mx-auto px-8 sm:px-0 pt-4 pb-4 sm:py-8 mb-0">
             <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between shadow-2xl">
               <div className="mb-6 md:mb-0">
                 <h3 className="text-white text-2xl font-extrabold mb-2 drop-shadow-lg">Join Our Newsletter</h3>
