@@ -27,7 +27,7 @@ const SignupPage = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-pink-50 to-purple-100 px-2">
-            <div className="w-full max-w-xs sm:max-w-md bg-gradient-to-br from-white via-blue-100 to-pink-100 border border-blue-200 rounded-2xl shadow-2xl px-1 py-4 sm:px-4 sm:py-6 flex flex-col items-center">
+            <div className="w-full max-w-xs sm:max-w-md bg-gradient-to-br from-white via-blue-100 to-pink-100 border border-blue-200 rounded-2xl shadow-2xl px-4 py-4 sm:px-6 sm:py-6 flex flex-col items-center">
                 <form onSubmit={handleSubmit} className="w-full flex flex-col gap-1">
                     <h1 className="text-3xl font-extrabold mb-6 text-center bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent tracking-wide">Sign Up</h1>
                     <div className="mb-2">

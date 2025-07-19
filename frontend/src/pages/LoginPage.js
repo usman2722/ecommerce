@@ -36,7 +36,7 @@ const LoginPage = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-pink-50 to-purple-100 px-2">
-            <div className="w-full max-w-xs sm:max-w-md bg-gradient-to-br from-white via-blue-100 to-pink-100 border border-blue-200 rounded-2xl shadow-2xl px-1 py-4 sm:px-4 sm:py-6 flex flex-col items-center">
+            <div className="w-full max-w-xs sm:max-w-md bg-gradient-to-br from-white via-blue-100 to-pink-100 border border-blue-200 rounded-2xl shadow-2xl px-4 py-4 sm:px-6 sm:py-6 flex flex-col items-center">
                 {redirectMsg && (
                     <div className="bg-yellow-100 text-yellow-800 p-2 mb-4 rounded text-center font-semibold w-full">{redirectMsg}</div>
                 )}
