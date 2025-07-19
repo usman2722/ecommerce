@@ -125,7 +125,7 @@ export default function AdminDashboardNew() {
             {statCards.slice(0, 4).map((card, idx) => (
               <Grid
                 item
-                xs={12}
+                xs={6}
                 sm={6}
                 md={3}
                 key={card.label}
@@ -150,7 +150,8 @@ export default function AdminDashboardNew() {
                       borderColor: '#1976d2',
                     },
                     minHeight: 110,
-                    width: 180,
+                    width: { xs: '100%', md: 180 },
+                    maxWidth: { xs: 160, sm: 180 },
                     cursor: 'pointer',
                   }}
                   onClick={() => setSelectedCard(card)}
@@ -184,7 +185,7 @@ export default function AdminDashboardNew() {
             {statCards.length > 4 && (
               <Grid
                 item
-                xs={12}
+                xs={6}
                 sm={6}
                 md={3}
                 key={statCards[4].label}
@@ -209,7 +210,8 @@ export default function AdminDashboardNew() {
                       borderColor: '#1976d2',
                     },
                     minHeight: 110,
-                    width: 180,
+                    width: { xs: '100%', md: 180 },
+                    maxWidth: { xs: 160, sm: 180 },
                     cursor: 'pointer',
                   }}
                   onClick={() => setSelectedCard(statCards[4])}
