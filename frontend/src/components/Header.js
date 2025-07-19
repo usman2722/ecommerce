@@ -126,7 +126,7 @@ const Header = ({ cartCount, theme = 'default' }) => {
                                         <span className="ml-2 font-semibold">Logout</span>
                                     </button>
                                 ) : (
-                                    <Link to="/login" className="text-gray-700 hover:text-blue-600 transition flex items-center">
+                                    <Link to="/login" className="text-gray-700 hover:text-blue-600 transition flex items-center" onClick={() => setMobileMenuOpen(false)}>
                                         <LoginIcon style={{ fontSize: 32 }} />
                                     </Link>
                                 )}
