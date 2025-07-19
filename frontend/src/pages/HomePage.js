@@ -8,6 +8,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getImageUrl } from '../utils/imageUtils';
+import { Link } from 'react-router-dom';
+
 
 const features = [
   { title: 'Free Shipping', desc: 'On all orders over $50', icon: '🚚' },
@@ -228,7 +230,7 @@ const HomePage = ({ onCartChange }) => {
           <div className="container mx-auto px-8 sm:px-0 mb-8 sm:mb-16" id="products">
             <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center text-purple-700 drop-shadow-2xl tracking-wide">Latest Products</h1>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
-                {Array.isArray(products) && products.map((product) => (
+                {Array.isArray(products) && products.slice(0, 8).map((product) => (
                     <ProductCard
                         key={product._id}
                         product={product}
@@ -257,6 +259,16 @@ const HomePage = ({ onCartChange }) => {
                     />
                 ))}
             </div>
+            {Array.isArray(products) && products.length > 8 && (
+              <div className="text-center mt-12">
+                <Link 
+                  to="/categories" 
+                  className="inline-block bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-4 px-12 rounded-full shadow-lg transition-all duration-200 transform hover:scale-105 text-xl sm:text-2xl"
+                >
+                  View All Products
+                </Link>
+              </div>
+            )}
           </div>
          
 
