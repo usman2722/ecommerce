@@ -3,6 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import AdminLayout from '../components/AdminLayout';
 import { fetchProduct, updateProduct } from '../services/api';
 import { getImageUrl } from '../utils/imageUtils';
+import axios from 'axios';
+import API from '../services/api';
+
+const CATEGORY_OPTIONS = ['Electronics', 'Fashion', 'Sports', 'Other'];
 
 const AdminEditProduct = () => {
   const { id } = useParams();
@@ -11,6 +15,9 @@ const AdminEditProduct = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const [customCategory, setCustomCategory] = useState('');
 
   useEffect(() => {
     const getProduct = async () => {
@@ -25,6 +32,10 @@ const AdminEditProduct = () => {
           stock: data.stock || '',
           description: data.description || '',
         });
+        // Set preview to current image
+        if (data.image) {
+          setPreview(data.image);
+        }
         setError('');
       } catch (err) {
         setError('Failed to load product');
@@ -38,18 +49,61 @@ const AdminEditProduct = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleCategoryChange = (e) => {
+    const value = e.target.value;
+    if (value === 'Other') {
+      setForm({ ...form, category: '' });
+    } else {
+      setForm({ ...form, category: value });
+      setCustomCategory('');
+    }
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setPreview(URL.createObjectURL(file)); // Show instant preview
+    const formData = new FormData();
+    formData.append('image', file);
+    setUploading(true);
+    setError('');
+    try {
+      const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
+      const { data } = await API.post('/products/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${adminInfo?.token}`,
+        },
+      });
+      setForm((prev) => ({ ...prev, image: data.image }));
+      setPreview(data.image); // After upload, show Cloudinary image
+      setSuccess('Image uploaded successfully!');
+    } catch (err) {
+      setError('Image upload failed.');
+    }
+    setUploading(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccess('');
     setError('');
+    const submitForm = { ...form };
+    if (CATEGORY_OPTIONS.includes(form.category) === false && customCategory) {
+      submitForm.category = customCategory;
+    }
     try {
-      await updateProduct(id, form);
+      await updateProduct(id, submitForm);
       setSuccess('Product updated successfully!');
       setTimeout(() => navigate('/admin/products'), 1200);
     } catch (err) {
       setError('Failed to update product');
     }
   };
+
+  const backendBaseUrl = process.env.REACT_APP_API_URL
+    ? process.env.REACT_APP_API_URL.replace('/api', '')
+    : 'http://localhost:5000';
 
   return (
     <AdminLayout>
@@ -74,15 +128,46 @@ const AdminEditProduct = () => {
                 <input type="number" name="price" value={form.price} onChange={handleChange} className="w-full rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm" required />
               </div>
               <div>
-                <label className="block font-semibold mb-1 text-blue-800">Image URL</label>
-                <input type="text" name="image" value={form.image} onChange={handleChange} className="w-full rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm" required />
-                {form.image && (
-                  <img src={getImageUrl(form.image)} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100 mt-3" />
-                )}
+                <label className="block font-semibold mb-1 text-blue-800">Product Image</label>
+                <div className="flex items-center gap-4">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm border-0"
+                  />
+                  {uploading && <span className="text-blue-600 font-semibold">Uploading...</span>}
+                  {preview && (
+                    <img src={preview.startsWith('http') ? preview : `${backendBaseUrl}${preview}`} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100" />
+                  )}
+                </div>
+                <input type="hidden" name="image" value={form.image} />
               </div>
               <div>
                 <label className="block font-semibold mb-1 text-blue-800">Category</label>
-                <input type="text" name="category" value={form.category} onChange={handleChange} className="w-full rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm" required />
+                <select
+                  name="category"
+                  value={CATEGORY_OPTIONS.includes(form.category) ? form.category : (form.category ? 'Other' : '')}
+                  onChange={handleCategoryChange}
+                  className="w-full rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm mb-2 border-0"
+                  required
+                >
+                  <option value="" disabled>Select a category</option>
+                  {CATEGORY_OPTIONS.map(opt => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+                {((form.category === '' && customCategory !== '') || form.category === 'Other') && (
+                  <input
+                    type="text"
+                    name="customCategory"
+                    value={customCategory}
+                    onChange={e => setCustomCategory(e.target.value)}
+                    placeholder="Enter new category"
+                    className="w-full rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm mt-1 border-0"
+                    required
+                  />
+                )}
               </div>
               <div>
                 <label className="block font-semibold mb-1 text-blue-800">Stock</label>
