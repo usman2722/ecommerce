@@ -11,6 +11,7 @@ const AdminAddProduct = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', price: '', image: '', category: '', stock: '', description: '' });
   const [uploading, setUploading] = useState(false);
+  const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [customCategory, setCustomCategory] = useState('');
@@ -51,6 +52,7 @@ const AdminAddProduct = () => {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    setPreview(URL.createObjectURL(file)); // Show instant preview
     const formData = new FormData();
     formData.append('image', file);
     setUploading(true);
@@ -65,6 +67,7 @@ const AdminAddProduct = () => {
         },
       });
       setForm((prev) => ({ ...prev, image: data.image }));
+      setPreview(data.image); // After upload, show Cloudinary image
       setMessage('Image uploaded!');
     } catch (err) {
       setMessage('Image upload failed.');
@@ -106,8 +109,8 @@ const AdminAddProduct = () => {
                   className="rounded-full px-4 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 font-semibold shadow-sm border-0"
                 />
                 {uploading && <span className="text-blue-600 font-semibold">Uploading...</span>}
-                {form.image && (
-                  <img src={`${backendBaseUrl}${form.image}`} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100" />
+                {preview && (
+                  <img src={preview.startsWith('http') ? preview : `${backendBaseUrl}${preview}`} alt="Preview" className="h-16 w-24 object-cover rounded-xl shadow border-2 border-blue-100" />
                 )}
               </div>
               <input type="hidden" name="image" value={form.image} />
